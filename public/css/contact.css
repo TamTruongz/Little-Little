@@ -1,0 +1,147 @@
+.title-contact {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.title-contact img {
+    width: 15%;
+}
+
+.content-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 70px;
+    gap: 20px;
+}
+
+.contact-left {
+    width: 800px;
+    height: 440px;
+    background: #FDE8B3;
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 0 10px 0px 0px #FFCA7B;
+
+}
+
+.contact-left-egde {
+    height: 100%;
+    border-radius: 23px;
+    border: 3px dashed #FFB489;
+    padding: 40px;
+}
+
+
+
+.text-contact-left {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    color: #23221F;
+    opacity: 0.7;
+}
+
+.form-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.box-contact {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.box-contact input {
+    background: #FFFFFF;
+    box-shadow: inset -1px 3px 3px rgba(179, 91, 11, 0.5);
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    height: 40px;
+    padding: 0 15px;
+
+}
+
+.input-contact-1 {
+    width: 250px;
+}
+
+.input-contact-2 {
+    flex: 1;
+}
+
+.box-contact textarea {
+    background: #FFFFFF;
+    box-shadow: inset -1px 3px 3px rgba(179, 91, 11, 0.5);
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    resize: none;
+}
+
+.box-contact-button {
+    display: flex;
+    justify-content: center;
+}
+
+.box-contact-button .btn-contact {
+    background: #FF000A;
+    border: none;
+    border-radius: 10px;
+    width: 300px;
+    height: 40px;
+    box-shadow: 0 8px 0px 0px #BD000B;
+    font-family: 'Sigmar', cursive;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    color: #FFFFFF;
+
+}
+
+.contact-right {
+    width: 450px;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.item-contact-right {
+    background: #FDE8B3;
+    border-radius: 35px;
+    padding: 8px;
+    box-shadow: 0 10px 0px 0px #FFCA7B;
+}
+
+.item-contact-right-egde {
+    width: 100%;
+    height: 120px;
+    border: 3px dashed #FFB489;
+    background: #FFF6D4;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    gap: 20px;
+
+}
+
+.text-item-contact-right h1 {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    color: #12265A;
+}
+
+.alex-contact-1 {
+    position: absolute;
+    top: 39%;
+    left: 0.5%;
+    width: 13%;
+}

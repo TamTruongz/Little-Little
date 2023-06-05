@@ -1,0 +1,153 @@
+.bg-2 {
+    width: 90%;
+    height: 80vh;
+    background-image: url('/public/images/bg-event.svg');
+    background-size: cover;
+    margin-left: 70px;
+    margin-top: -20px;
+}
+
+.title-event {
+    display: flex;
+    justify-content: center;
+    padding: 45px 0 30px 0;
+}
+.title-event img {
+    width: 40%;
+}
+.content-event {
+    position: relative;
+}
+.carousel-item {
+    padding-left: 50px;
+}
+.event {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0px;
+    gap: 15px;
+}
+
+.item-event {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 300px;
+    height: 430px;
+    background: #FFFFFF;
+
+    /* box-shadow: 4px 4px 45px rgba(109, 46, 0, 0.35); */
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.item-event img {
+    width: 100%;
+}
+
+.body-item-event {
+    padding: 0 18px;
+}
+
+.body-item-event h1 {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 25px;
+    color: #23221F;
+}
+
+.body-item-event h2 {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 18px;
+    color: #6C7272;
+}
+
+.body-item-event h3 {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    color: #444444;
+    gap: 5px;
+}
+
+.body-item-event h3 img {
+    width: 20px;
+}
+
+.body-item-event h4 {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.005em;
+    color: #FA7D09;
+}
+
+.btn-infomation {
+    width: 200px;
+    height: 40px;
+    background: #FF000A;
+
+    font-family: 'Sigmar', cursive;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    border-radius: 7px;
+    box-shadow: 0 7px 2px -1px rgba(165, 15, 15);
+}
+.btn-infomation:hover {
+    color: #FFFFFF;
+    background: #df282e;
+
+}
+
+.carousel-control-prev-- {
+    background-image: url('/public/images/previous-btn.svg');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    left: -2%;
+}
+.carousel-control-next-- {
+    background-image: url('/public/images/next-btn.svg');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    right: -2%;
+}
+
+/*  */
+.bg-flag-1 {
+    position: absolute;
+    top:0;
+    left: -0.5%;
+    transform: matrix(1, -0.09, 0.09, 1, 0, 0);
+}
+.bg-flag-2 {
+    position: absolute;
+    top: -10%;
+    right: 0;
+    width: 40%;
+    /* transform: rotate(9.58deg); */
+}
