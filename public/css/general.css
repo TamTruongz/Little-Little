@@ -25,7 +25,7 @@ a {
 
 main {
     height: 97vh;
-    background-image: url('/public/images/bg-main.svg');
+    background-image: url('/images/bg-main.svg');
     background-size: cover;
     background-position-y: -75px;
     margin: 0 30px;
