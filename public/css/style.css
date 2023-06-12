@@ -213,6 +213,10 @@ header {
 
 }
 
+.select-mouse {
+    cursor: pointer;
+}
+
 .btn-down {
     width: 47px;
     height: 44px;

@@ -12,45 +12,50 @@
                 <p>VÉ CỔNG - VÉ GIA ĐÌNH</p>
             </div>
             <div class="area-content-left-abate">
-                <form action="" method="post">
+                <form>
                     <div class="area-box-abate-left">
                         <div class="box-abate">
                             <p>Số tiền thanh toán</p>
-                            <input class="input-box box-abate-1" type="text" name="" id="" placeholder="">
+                            <input class="input-box box-abate-1" type="text" name="" id=""
+                                value="{{ $ticket['total_price'] }}" placeholder="" disabled>
                         </div>
                         <div class="box-abate">
                             <p>Số lượng vé</p>
                             <div>
-                                <input class="input-box box-abate-2" type="text" name="" id="" placeholder="">
+                                <input class="input-box box-abate-2" type="number" name=""
+                                    value="{{ $ticket['quantity'] }}" id="" placeholder="" disabled>
                                 <p>vé</p>
                             </div>
                         </div>
                         <div class="box-abate">
                             <p>Ngày sử dụng</p>
-                            <input class="input-box box-abate-1" type="text" name="" id="" placeholder="">
+                            <input class="input-box box-abate-1" type="text" name="" value="{{ $ticket['use_date'] }}"
+                                id="" placeholder="" disabled>
                         </div>
                     </div>
 
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Thông tin liên hệ</p>
-                            <input class="input-box box-abate-3" type="text" name="" id="" placeholder="Họ và tên">
+                            <input class="input-box box-abate-3" type="text" name="" value="{{ $ticket['full_name'] }}"
+                                id="" placeholder="Họ và tên" disabled>
                         </div>
 
                     </div>
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Điện thoại</p>
-                            <input class="input-box box-abate-1" type="text" name="" id="" placeholder="Số điện thoại">
+                            <input class="input-box box-abate-1" type="text" name="" value="{{ $ticket['phone'] }}"
+                                id="" placeholder="Số điện thoại" disabled>
                         </div>
                     </div>
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Email</p>
-                            <input class="input-box box-abate-3" type="email" name="" id="" placeholder="Email">
+                            <input class="input-box box-abate-3" type="email" name="" value="{{ $ticket['email'] }}"
+                                id="" placeholder="Email" disabled>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -60,32 +65,33 @@
                 <p>THÔNG TIN THANH TOÁN</p>
             </div>
             <div class="area-content-right-abate">
-                <form action="#" method="post">
+                <form action="{{ route('payment') }}" method="POST">
+                    @csrf
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Số thẻ</p>
-                            <input class="input-box box-abate-3" type="text" name="" id="" placeholder="">
+                            <input class="input-box box-abate-3 form-control @error('card_number') is-invalid @enderror" type="number" name="card_number" id="" placeholder="">
                         </div>
                     </div>
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Họ tên chủ thẻ</p>
-                            <input class="input-box box-abate-3" type="text" name="" id="" placeholder="">
+                            <input class="input-box box-abate-3 form-control @error('card_holder') is-invalid @enderror" type="text" name="card_holder" id="" placeholder=""
+                                onkeyup="this.value = this.value.toUpperCase();">
                         </div>
                     </div>
                     <div class="area-box-abate--calendar">
                         <p>Ngày hết hạn</p>
                         <div class="box--calendar">
-                            <!-- <input class="input-box box-3" type="text" placeholder="Ngày sử dụng"> -->
-                            <!-- <button class="btn-calendar"></button> -->
-                            <input class="input-box box-3" type="text" id="selectedDate" placeholder="Ngày sử dụng">
+                            <input class="input-box box-3 form-control @error('expiration_date') is-invalid @enderror" type="text" id="selectedDate" name="expiration_date"
+                                placeholder="Ngày sử dụng">
                             <div class="btn-calendar"></div>
                         </div>
                     </div>
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>CVV/CVC</p>
-                            <input class="input-box box-abate-2" type="text" name="" id="" placeholder="">
+                            <input class="input-box box-abate-2 form-control @error('cvv') is-invalid @enderror" type="password" name="cvv" id="" placeholder="">
                         </div>
                     </div>
                     <div class="area-box-abate--button-abate">
@@ -97,17 +103,20 @@
         </div>
     </div>
 </main>
-<div id="myModal-abate" class="modal">
-    <div class="modal-content-abate">
-        <span class="close">&times;</span>
-        <div class="header-modal-abate">
-            <img class="emoji-abate" src="/images/Disappointed emoji Face.svg" alt="">
-        </div>
-        <div class="body-modal-abate">
-            <p>Hình như đã có lỗi xảy ra khi thanh toán... <br>
-                Vui lòng kiểm tra lại thông tin liên hệ, thông tin thẻ và thử lại.</p>
-        </div>
-    </div>
-</div>
+@if(session('errors') && session('errors')->has('abate'))
+    <script>
+        window.onload = function() {
+            var modal = document.getElementById('myModal-abate');
+            modal.style.display = 'block';
 
+            // Thêm event listener vào document
+            document.addEventListener('click', function(event) {
+                // Nếu người dùng nhấp chuột bên ngoài popup, ẩn popup
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+    </script>
+@endif
 @endsection

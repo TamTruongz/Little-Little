@@ -225,7 +225,7 @@
 
 .area-content-- {
     width: 1250px;
-    height: 450px;
+    height: 500px;
     background-color: #FDE8B3;
     margin: 30px 0 0 60px;
     border-radius: 20px;
@@ -248,28 +248,44 @@
 }
 
 .area-ticket-QR {
-    width: 90%;
+    width: 95%;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    overflow: auto;
+    gap: 20px;
 }
 
 .item-ticket {
-    width: 220px;
-    height: 350px;
+    width: 250px;
+    height: 400px;
     background-color: #fff;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 15px;
+    padding: 15px 0;
 }
 
 .header-ticket {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.img-QR {
+    display: flex;
+    justify-content: center;
+}
+.img-QR canvas {
+    display: flex;
+    justify-content: center;
+}
+.img-QR canvas img {
+    width: 130px;
+    height: 130px;
 }
 
 .body-ticket {
@@ -421,8 +437,11 @@
 .emoji-abate {
     position: absolute;
     top: -65px;
-    left: 35%;
+    left: 36%;
+    width: 133px;
+    height: 133px;
 }
+
 
 .body-modal-abate {
     padding: 30px;

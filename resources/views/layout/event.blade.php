@@ -7,116 +7,35 @@
             <img src="/images/Sự kiện nổi bật.svg" alt="">
         </div>
         <div class="content-event">
-            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false"
-                data-bs-interval="false">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="event">
-                            <div class="item-event">
-                                <img src="/images/Rectangle-event-1.png" alt="">
-                                <div class="body-item-event">
-                                    <h1>Sự kiện 1</h1>
-                                    <h2>Đầm sen Park</h2>
-                                    <h3><img src="/images/calendar.svg" alt=""> 30/05/2021 - 01/06/2021</h3>
-                                    <h4>25.000 VNĐ</h4>
-                                    <a class="btn-infomation" href="{{ route('event.info') }}">Xem chi tiết</a>
-                                </div>
-                            </div>
+            <div class="area-event">
 
-                            <div class="item-event">
-                                <img src="/images/Rectangle-event-1.png" alt="">
-                                <div class="body-item-event">
-                                    <h1>Sự kiện 2</h1>
-                                    <h2>Đầm sen Park</h2>
-                                    <h3><img src="/images/calendar.svg" alt=""> 30/05/2021 - 01/06/2021</h3>
-                                    <h4>50.000 VNĐ</h4>
-                                    <a class="btn-infomation" href="{{ route('event.info') }}">Xem chi tiết</a>
-                                </div>
-                            </div>
-
-                            <div class="item-event">
-                                <img src="/images/Rectangle-event-1.png" alt="">
-                                <div class="body-item-event">
-                                    <h1>Sự kiện 3</h1>
-                                    <h2>Đầm sen Park</h2>
-                                    <h3><img src="/images/calendar.svg" alt=""> 30/05/2021 - 01/06/2021</h3>
-                                    <h4>100.000 VNĐ</h4>
-                                    <a class="btn-infomation" href="{{ route('event.info') }}">Xem chi tiết</a>
-                                </div>
-                            </div>
-
-                            <div class="item-event">
-                                <img src="/images/Rectangle-event-1.png" alt="">
-                                <div class="body-item-event">
-                                    <h1>Sự kiện 4</h1>
-                                    <h2>Đầm sen Park</h2>
-                                    <h3><img src="/images/calendar.svg" alt=""> 30/05/2021 - 01/06/2021</h3>
-                                    <h4>125.000 VNĐ</h4>
-                                    <a class="btn-infomation" href="{{ route('event.info') }}">Xem chi tiết</a>
-                                </div>
-                            </div>
-                        </div>
+                @foreach($events as $event)
+                <div class="item-event">
+                    <img src="/images/{{ $event->img }}" alt="">
+                    <div class="body-item-event">
+                        <h1>{{ $event->name }}</h1>
+                        <h2>{{ $event->location }}</h2>
+                        <h3><img src="/images/calendar.svg" alt=""> {{ date('d/m/Y', strtotime($event->start_time)) }} -
+                            {{ date('d/m/Y', strtotime($event->end_date)) }}
+                        </h3>
+                        <h4>{{ number_format($event->ticket_price, 0, ',', '.') }} VNĐ</h4>
+                        <a class="btn-infomation" href="{{ route('event.info', $event->id) }}">Xem chi tiết</a>
                     </div>
-
-                    <div class="carousel-item">
-                        <div class="event">
-
-                            <div class="item-event">
-                                <img src="/images/Rectangle-event-1.png" alt="">
-                                <div class="body-item-event">
-                                    <h1>Sự kiện 1</h1>
-                                    <h2>Đầm sen Park</h2>
-                                    <h3><img src="/images/calendar.svg" alt=""> 30/05/2021 - 01/06/2021</h3>
-                                    <h4>25.000 VNĐ</h4>
-                                    <a class="btn-infomation" href="{{ route('event.info') }}">Xem chi tiết</a>
-                                </div>
-                            </div>
-
-                            <div class="item-event">
-                                <img src="/images/Rectangle-event-1.png" alt="">
-                                <div class="body-item-event">
-                                    <h1>Sự kiện 1</h1>
-                                    <h2>Đầm sen Park</h2>
-                                    <h3><img src="/images/calendar.svg" alt=""> 30/05/2021 - 01/06/2021</h3>
-                                    <h4>25.000 VNĐ</h4>
-                                    <a class="btn-infomation" href="{{ route('event.info') }}">Xem chi tiết</a>
-                                </div>
-                            </div>
-
-                            <div class="item-event">
-                                <img src="/images/Rectangle-event-1.png" alt="">
-                                <div class="body-item-event">
-                                    <h1>Sự kiện 1</h1>
-                                    <h2>Đầm sen Park</h2>
-                                    <h3><img src="/images/calendar.svg" alt=""> 30/05/2021 - 01/06/2021</h3>
-                                    <h4>25.000 VNĐ</h4>
-                                    <a class="btn-infomation" href="{{ route('event.info') }}">Xem chi tiết</a>
-                                </div>
-                            </div>
-
-                            <div class="item-event">
-                                <img src="/images/Rectangle-event-1.png" alt="">
-                                <div class="body-item-event">
-                                    <h1>Sự kiện 1</h1>
-                                    <h2>Đầm sen Park</h2>
-                                    <h3><img src="/images/calendar.svg" alt=""> 30/05/2021 - 01/06/2021</h3>
-                                    <h4>25.000 VNĐ</h4>
-                                    <a class="btn-infomation" href="{{ route('event.info') }}">Xem chi tiết</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+                @endforeach
 
+                @if ($events->previousPageUrl())
                 <button class="carousel-control-prev--" type="button"
-                    data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                </button>
+                    onclick="window.location='{{ $events->previousPageUrl() }}'"></button>
+                @endif
+
+                @if ($events->nextPageUrl())
                 <button class="carousel-control-next--" type="button"
-                    data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                </button>
+                    onclick="window.location='{{ $events->nextPageUrl() }}'"></button>
+                @endif
             </div>
         </div>
+    </div>
     </div>
 </main>
 

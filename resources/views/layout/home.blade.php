@@ -46,35 +46,41 @@
                 <p>VÉ CỦA BẠN</p>
             </div>
             <div class="area-content-right">
-                <form id="form-datve" action="#" method="post">
+                <form action="{{ route('booking') }}" method="POST">
+                    @csrf
                     <div class="box">
-                        <input class="input-box box-1" type="text" id="selectedOption" placeholder="Chọn gói dịch vụ"
-                            readonly>
+                        <input class="input-box box-1 select-mouse form-control @error('package') is-invalid @enderror" name="package" type="text" id="selectedOption"
+                            placeholder="Chọn gói dịch vụ" readonly value="{{ old('package') }}">
                         <div class="btn-down"></div>
                         <div class="dropdown-content box-1">
-                            <a class="item-service" href="#">Gói gia đình</a>
-                            <a class="item-service" href="#">Gói cặp đôi</a>
-                            <a class="item-service" href="#">Gói cá nhân</a>
-                            <a class="item-service" href="#">Gói đoàn thể</a>
+                            @foreach($packages as $item)
+                            <a class="item-service" href="#" data-price="{{ $item->price }}">{{ $item->name }}</a>
+                            @endforeach
                         </div>
                     </div>
 
                     <div class="box">
-                        <input class="input-box box-2" type="text" placeholder="Số lượng vé">
-                        <input class="input-box box-3" type="text" id="selectedDate" placeholder="Ngày sử dụng">
+                        <input class="input-box box-2 form-control @error('quantity') is-invalid @enderror" type="number" name="quantity" id="quantityInput"
+                            placeholder="Số lượng vé" min="0" value="{{ old('quantity') }}">
+                        <input class="input-box box-3 form-control @error('use_date') is-invalid @enderror" type="text" name="use_date" id="selectedDate"
+                            placeholder="Ngày sử dụng" value="{{ old('use_date') }}">
                         <div class="btn-calendar"></div>
                     </div>
                     <div class="box">
-                        <input class="input-box box-4" type="text" placeholder="Họ và tên">
+                        <input class="input-box box-4 form-control @error('full_name') is-invalid @enderror" type="text" name="full_name" placeholder="Họ và tên" value="{{ old('full_name') }}">
                     </div>
                     <div class="box">
-                        <input class="input-box box-4" type="text" placeholder="Số điện thoại">
+                        <input class="input-box box-4 form-control @error('phone') is-invalid @enderror" type="text" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
                     </div>
                     <div class="box">
-                        <input class="input-box box-4" type="text" placeholder="Địa chỉ email">
+                        <input class="input-box box-4 form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="Địa chỉ email" value="{{ old('email') }}">
+                    </div>
+                    <div class="box">
+                        <input class="input-box box-4" type="hidden" name="total_price" id="totalPriceInput"
+                            placeholder="Giá vé">
                     </div>
                     <div class="box-btn">
-                        <button form="form-datve" class="btn-datve">ĐẶT VÉ</button>
+                        <button class="btn-datve">ĐẶT VÉ</button>
                     </div>
                 </form>
             </div>
@@ -91,6 +97,56 @@
 <img class="bg-18451_4" src="/images/18451_1.svg" alt="">
 <img class="bg-18451_5" src="/images/18451_4.svg" alt="">
 
+<script>
+$(document).ready(function() {
+    // Xử lý sự kiện khi người dùng chọn gói dịch vụ
+    $('.dropdown-content a.item-service').on('click', function() {
+        const price = $(this).data('price');
+        const quantity = parseInt($('#quantityInput').val());
+
+        if (!isNaN(price) && !isNaN(quantity) && quantity > 0) {
+            const totalPrice = price * quantity;
+            $('#totalPriceInput').val(totalPrice);
+            updateTotalPrice();
+        }
+
+        // Đánh dấu gói dịch vụ được chọn
+        $('.dropdown-content a.selected').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    // Xử lý sự kiện khi người dùng nhập số lượng vé
+    $('#quantityInput').on('input', function() {
+        const selectedService = $('.dropdown-content a.selected');
+        const quantity = parseInt($(this).val());
+
+        if (selectedService.length && !isNaN(quantity) && quantity > 0) {
+            const price = selectedService.data('price');
+            const totalPrice = price * quantity;
+            $('#totalPriceInput').val(totalPrice);
+            updateTotalPrice();
+        }
+    });
+
+    // Cập nhật tổng giá tiền
+    function updateTotalPrice() {
+        const totalPrices = $('input[name="total_price"]');
+        let sum = 0;
+
+        totalPrices.each(function() {
+            const price = parseFloat($(this).val());
+            if (!isNaN(price)) {
+                sum += price;
+            }
+        });
+
+        $('#sumPrice').text(sum.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        }));
+    }
+});
+</script>
 
 
 @endsection

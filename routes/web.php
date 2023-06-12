@@ -19,9 +19,15 @@ use App\Http\Controllers\AbateController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/abate', [HomeController::class, 'booking'])->name('booking');
+
 Route::get('/event', [EventContronller::class, 'index'])->name('event');
-Route::get('event/info', [EventContronller::class, 'info'])->name('event.info');
+Route::get('event/info/{id}', [EventContronller::class, 'info'])->name('event.info');
+
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
 Route::get('/abate', [AbateController::class, 'index'])->name('abate');
-Route::get('/abate/success', [AbateController::class, 'success'])->name('abate.succes');
+Route::post('/abate/payment', [AbateController::class, 'payment'])->name('payment');
+Route::get('/abate/success', [AbateController::class, 'success'])->name('abate.success');
 

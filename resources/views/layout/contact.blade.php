@@ -14,19 +14,45 @@
                     volutpat tellus quis risus volutpat, ut posuere ex facilisis.
                 </p>
 
-                <form class="form-contact" action="#" method="post">
+                <form class="form-contact" action="{{ route('contact.store') }}" method="post">
+                    @csrf
                     <div class="box-contact">
-                        <input class="input-contact-1" type="text" placeholder="Tên">
-                        <input class="input-contact-2" type="email" placeholder="Email">
+                        <div>
+                            <input class="input-contact-1 form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" type="text" placeholder="Tên" name="name" >
+                            @if($errors->has('name'))
+                            <div class="text-danger">{{ $errors->first('name') }}</div>
+                            @endif
+                        </div>
+                        <div class="input-contact-2">
+                            <input class="w-100 form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" type="email" placeholder="Email" name="email">
+                            @if($errors->has('email'))
+                            <div class="text-danger">{{ $errors->first('email') }}</div>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="box-contact">
-                        <input class="input-contact-1" type="text" placeholder="Số điện thoại">
-                        <input class="input-contact-2" type="text" placeholder="Địa chỉ">
+                        <div>
+                            <input class="input-contact-1 form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" type="number" placeholder="Số điện thoại" name="phone">
+                            @if($errors->has('phone'))
+                            <div class="text-danger">{{ $errors->first('phone') }}</div>
+                            @endif
+                        </div>
+                        <div class="input-contact-2">
+                            <input class="w-100 form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" type="text" placeholder="Địa chỉ" name="address">
+                            @if($errors->has('address'))
+                            <div class="text-danger">{{ $errors->first('address') }}</div>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="box-contact">
-                        <textarea name="" id="" cols="100" rows="4" placeholder="Lời nhắn"></textarea>
+                        <div class="box-textarea">
+                            <textarea class="form-control @error('message') is-invalid @enderror" value="{{ old('message') }}" name="message" id="" cols="" rows="4" placeholder="Lời nhắn"></textarea>
+                            @if($errors->has('message'))
+                            <div class="text-danger">{{ $errors->first('message') }}</div>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="box-contact-button">
@@ -74,40 +100,4 @@
 
 <img class="alex-contact-1" src="/images/Alex_AR_Lay_Do-shadow-1.svg" alt="" srcset="">
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div>
-            <p>Gửi liên hệ thành công.
-                Vui lòng kiên nhẫn đợi phản hồi từ chúng tôi, bạn nhé!</p>
-        </div>
-    </div>
-</div>
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
 @endsection

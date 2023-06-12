@@ -16,6 +16,9 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
     <!-- CSS -->
     @foreach (glob(public_path('css/*.css')) as $file)
     <link rel="stylesheet" href="{{ asset('css/' . basename($file)) }}">
@@ -34,10 +37,16 @@
     <!-- Calendar -->
     @include('common.calendar')
     <!-- End Calendar -->
+
+    <!-- Message -->
+    @include('common.message')
+    <!-- End Message -->
+
 </body>
 
 <!-- === JS === -->
 @foreach (glob(public_path('js/*.js')) as $file)
 <script src="{{ asset('js/' . basename($file)) }}"></script>
 @endforeach
+
 </html>

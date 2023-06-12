@@ -1,5 +1,13 @@
 // Calendar
-const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+];
 const btnCalendar = document.querySelector(".btn-calendar");
 const calendar = document.querySelector(".calendar-modal");
 const monthYear = document.querySelector("#month-year");
@@ -12,15 +20,29 @@ const selectedDateInput = document.getElementById("selectedDate");
 let currentDate = new Date();
 
 function renderCalendar() {
-    let firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    let lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-    let lastDayOfPrevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+    let firstDayOfMonth = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        1
+    );
+    let lastDayOfMonth = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        0
+    );
+    let lastDayOfPrevMonth = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        0
+    );
     let daysInMonth = lastDayOfMonth.getDate();
     let daysInPrevMonth = lastDayOfPrevMonth.getDate();
     let firstDayOfWeek = firstDayOfMonth.getDay();
     let lastDayOfWeek = lastDayOfMonth.getDay();
 
-    monthYear.innerHTML = `${currentDate.toLocaleString("default", { month: "long" })} ${currentDate.getFullYear()}`;
+    monthYear.innerHTML = `${currentDate.toLocaleString("default", {
+        month: "long",
+    })} ${currentDate.getFullYear()}`;
 
     let daysHtml = "";
 
@@ -30,8 +52,11 @@ function renderCalendar() {
 
     for (let i = 1; i <= daysInMonth; i++) {
         let dayClass = "";
-        if (i === new Date().getDate() && currentDate.getMonth() === new Date().getMonth() && currentDate
-        .getFullYear() === new Date().getFullYear()) {
+        if (
+            i === new Date().getDate() &&
+            currentDate.getMonth() === new Date().getMonth() &&
+            currentDate.getFullYear() === new Date().getFullYear()
+        ) {
             dayClass = "today";
         }
         if (i === parseInt(document.querySelector(".selected")?.textContent)) {
@@ -92,7 +117,10 @@ calendar.addEventListener("click", (event) => {
 });
 
 days.addEventListener("click", (event) => {
-    if (event.target.classList.contains("prev-month") || event.target.classList.contains("next-month")) {
+    if (
+        event.target.classList.contains("prev-month") ||
+        event.target.classList.contains("next-month")
+    ) {
         return;
     }
 
@@ -110,7 +138,9 @@ function updateSelectedDate() {
     const selectedDay = document.querySelector(".selected").textContent;
     const [selectedMonth, selectedYear] = monthYear.innerHTML.split(" ");
 
-    const selectedDate = new Date(`${selectedMonth} ${selectedDay}, ${selectedYear}`).toLocaleDateString();
+    const selectedDate = new Date(
+        `${selectedMonth} ${selectedDay}, ${selectedYear}`
+    ).toLocaleDateString();
     selectedDateInput.value = selectedDate;
 }
 
@@ -139,25 +169,34 @@ dropdownOptions.forEach((option) => {
 });
 
 window.addEventListener("click", (event) => {
-    if (!event.target.matches(".btn-down") && !event.target.matches("#selectedOption")) {
+    if (
+        !event.target.matches(".btn-down") &&
+        !event.target.matches("#selectedOption")
+    ) {
         dropdownContent.classList.remove("show");
     }
 });
 
-// 
+//
 var modal = document.getElementById("myModal-abate");
 var btn = document.getElementById("myBtn-abate");
 var span = document.getElementsByClassName("close")[0];
-btn.onclick = function() {
+btn.onclick = function () {
     modal.style.display = "block";
-}
+};
 
-span.onclick = function() {
+span.onclick = function () {
     modal.style.display = "none";
-}
+};
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+};
+
+// Message
+
+function mousedown(event) {
+    document.getElementById("myModal").style.display = "none";
 }
