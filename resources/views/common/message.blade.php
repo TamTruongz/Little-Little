@@ -120,4 +120,13 @@ window.addEventListener('click', function(event) {
     </div>
 </div>
 @endif
-
+@if(session('success_TicketMail'))
+<div id="myModal" onclick="mousedown(event)">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div>
+            <p>{{ session('success_TicketMail') }}</p>
+        </div>
+    </div>
+</div>
+@endif

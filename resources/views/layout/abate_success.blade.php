@@ -41,7 +41,7 @@
 
         <div class="btn-download-sendemail">
             <a class="btn-download" href="#">Tải về</a>
-            <a class="btn-send-email" href="#">Gửi Email</a>
+            <a class="btn-send-email" href="{{ route('abate.sendmail') }}">Gửi Email</a>
         </div>
         <img class="bg-alvin-abate-success" src="/images/Alvin_Arnold_Votay1_abate-success.svg" alt="">
 

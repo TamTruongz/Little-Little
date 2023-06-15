@@ -119,6 +119,8 @@ return [
 
         'paths' => [
             resource_path('views/vendor/mail'),
+            // Thêm đường dẫn đến các template blade của bạn ở đây
+            resource_path('views/emails'),
         ],
     ],
 

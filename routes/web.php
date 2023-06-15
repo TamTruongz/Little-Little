@@ -31,3 +31,5 @@ Route::get('/abate', [AbateController::class, 'index'])->name('abate');
 Route::post('/abate/payment', [AbateController::class, 'payment'])->name('payment');
 Route::get('/abate/success', [AbateController::class, 'success'])->name('abate.success');
 
+Route::get('/abate/sendmail', [AbateController::class, 'SendMail'])->name('abate.sendmail');
+

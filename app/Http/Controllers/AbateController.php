@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Ticket;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
+use App\Mail\TicketMail;
+
+use Illuminate\Support\Facades\Mail;
 
 class AbateController extends Controller
 {
@@ -88,5 +91,31 @@ class AbateController extends Controller
         $ticketsToDisplay = $pagedTickets[$currentPage - 1]; // Lấy các phần tử cần hiển thị trên trang hiện tại
         
         return view('layout.abate_success', compact('ticketsToDisplay', 'quantity_ticket', 'currentPage', 'totalPages'));
+    }
+
+    
+    public function SendMail(Request $request) {
+        $id = $request->session()->get('ticket_id');
+        $ticket = Ticket::where('id', $id)->first();
+        $quantity_ticket = $ticket->quantity;
+        $tickets = [];
+        for ($i = 0; $i < $quantity_ticket; $i++) {
+            $tickets[] = [
+                'id' => $ticket->id,
+                'qr_code' => $ticket->qr_code,
+                'use_date' => $ticket->use_date,
+                'package' => $ticket->package,
+                'price' => $ticket->price,
+            ];
+        }
+        
+        $mail = new TicketMail($tickets);
+        Mail::to($ticket->email)->send($mail);
+
+        // Lưu thông báo vào session
+        $request->session()->flash('success_TicketMail', 'Gửi email thành công!');
+
+        // Quay lại trang trước đó
+        return back();
     }
 }
